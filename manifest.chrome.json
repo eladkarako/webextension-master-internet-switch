@@ -1,0 +1,45 @@
+{"version"                   : "26.9.11"
+,"homepage_url"              : "https://github.com/eladkarako/webextension-no-passkeys/"
+,"author"                    : "Elad Karako"
+,"manifest_version"          : 3
+,"default_locale"            : "en_US"
+,"name"                      : "__MSG_name_long__"
+,"short_name"                : "__MSG_name_shrt__"
+,"description"               : "__MSG_name_desc__"
+,"host_permissions"          : ["\u003Call_urls\u003E"]
+,"content_scripts"           : [{"js"                      : ["content_script.js"]
+                               ,"matches"                  : ["\u003Call_urls\u003E"]
+                               ,"all_frames"               : true
+                               ,"match_about_blank"        : true
+                               ,"match_origin_as_fallback" : true
+                               ,"run_at"                   : "document_start"
+                               ,"world"                    : "ISOLATED"
+                               }
+                              ,{"js"                       : ["content_script.js"]
+                               ,"matches"                  : ["\u003Call_urls\u003E"]
+                               ,"all_frames"               : true
+                               ,"match_about_blank"        : true
+                               ,"match_origin_as_fallback" : true
+                               ,"run_at"                   : "document_end"
+                               ,"world"                    : "ISOLATED"
+                               }]
+,"permissions"               : ["declarativeNetRequest"]
+,"declarative_net_request"   : {"rule_resources" : [{"id"      : "block_all"
+                                                    ,"path"    : "block_all.json"
+                                                    ,"enabled" : true
+                                                   }]
+                               }
+,"background"                : {"service_worker" : "sw.js"}
+,"icons"                     : {"16"  : "icons/internet_blocked/16.png"
+                               ,"32"  : "icons/internet_blocked/32.png"
+                               ,"48"  : "icons/internet_blocked/48.png"
+                               ,"128" : "icons/internet_blocked/128.png"
+                               }
+,"action"                    : {"default_title" : "__MSG_title_internet_blocked__"
+                               ,"default_icon"  : {"16"  : "icons/internet_blocked/16.png"
+                                                  ,"32"  : "icons/internet_blocked/32.png"
+                                                  ,"48"  : "icons/internet_blocked/48.png"
+                                                  ,"128" : "icons/internet_blocked/128.png"
+                                                  }
+                               }
+}
