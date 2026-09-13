@@ -1,6 +1,6 @@
-{ "name_shrt"              : {"message": "master-network-switch"                                    }
-, "name_long"              : {"message": "master-network-switch"                                    }
-, "name_desc"              : {"message": "start browsing with all connections blocked."             }
-, "title_internet_allowed" : {"message": "⭐ ⭐ ⭐ ⭐ ⭐  master-network-switch - state: ✔  ⭐ ⭐ ⭐ ⭐ ⭐"  }
-, "title_internet_blocked" : {"message": "⭐ ⭐ ⭐ ⭐ ⭐  master-network-switch - state: ✖  ⭐ ⭐ ⭐ ⭐ ⭐"  }
+{ "name_shrt"              : {"message": "master-internet-switch"                                    }
+, "name_long"              : {"message": "master-internet-switch"                                    }
+, "name_desc"              : {"message": "start browsing with all connections blocked. click icon to toggle allow/block."             }
+, "title_internet_allowed" : {"message": "⭐ ⭐ ⭐ ⭐ ⭐  master-internet-switch - state: ✔  ⭐ ⭐ ⭐ ⭐ ⭐"  }
+, "title_internet_blocked" : {"message": "⭐ ⭐ ⭐ ⭐ ⭐  master-internet-switch - state: ✖  ⭐ ⭐ ⭐ ⭐ ⭐"  }
 }

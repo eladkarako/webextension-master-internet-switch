@@ -1,5 +1,5 @@
-{"version"                   : "26.9.11"
-,"homepage_url"              : "https://github.com/eladkarako/webextension-no-passkeys/"
+{"version"                   : "26.9.14"
+,"homepage_url"              : "https://github.com/eladkarako/webextension-master-internet-switch/"
 ,"author"                    : "Elad Karako"
 ,"manifest_version"          : 3
 ,"default_locale"            : "en_US"
