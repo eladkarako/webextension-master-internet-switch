@@ -22,6 +22,8 @@ a small script will blank up the document after a second.
 note: browser start-up sequence first loads up the core functionality,  
 later the web-extensions, so it takes few seconds for the internet to get blocked.  
 
+<img src="screenshot1.jpg" />  
+
 note: cached pages do not require internet, they would be blanked after few seconds, unless fully loaded.
 
 <hr/>
