@@ -1,2 +1,5 @@
+26.9.15
++ adding runtime.onStartup to trigger the service worker to wake up very early just to enable the ruleset seems to work fine now.
+
 26.9.14
 + initial.
