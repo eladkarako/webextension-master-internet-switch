@@ -55,6 +55,19 @@ const toggle_internet = async ()=>{
 };
 
 
+const startup_handler = async ()=>{
+  if("undefined" !== typeof api.runtime.lastError && null !== api.runtime.lastError){
+    const error = api.runtime.lastError.message;
+    throw error;
+  }
+
+  const is_to_internet_allowed = false;
+  return set_internet(is_to_internet_allowed);
+};
+
+api.runtime.onStartup.addListener(startup_handler);
+
+
 const click_handler = async ()=>{
   if("undefined" !== typeof api.runtime.lastError && null !== api.runtime.lastError){
     const error = api.runtime.lastError.message;
