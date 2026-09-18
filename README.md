@@ -5,10 +5,9 @@ toggle allow/block by clicking the web-extension's icon.
 
 <img src="screenshot2.png" />  
 
-<video width="800"  preload="metadata" poster="screenshot1.jpg" controls muted loop disableremoteplayback disablepictureinpicture loading="lazy" crossorigin="anonymous">
-  <source type="video/mp4" src="screenshot3.mp4" />
-  Your browser does not support embedded video.
-</video>
+
+screenshot3.mp4
+
 
 <hr/>
 
