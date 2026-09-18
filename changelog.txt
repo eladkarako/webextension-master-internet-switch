@@ -5,6 +5,7 @@
 - using the same `startup_handler` to handle `onInstalled` which is an event that runs when installed or reloaded, just one more "wakeup" to the service worker I guess..
 - removing (commented-out code still exists) setting badge text and background color, I don't actually use it and it takes a lot of the promise timing as well as not being very effective, staying with icon and title and seems fine and more clean clear and simple). storing some of this (unused) information in the multi-language json files to save space in code.
 * explicit fallback to api for chrome or browser.
+* some icons cleanup, making the name 'internet disabled' 'internet enabled' to be more clear than 'ruleset disabled' (which means internet is enabled).
 
 26.9.15
 + adding runtime.onStartup to trigger the service worker to wake up very early just to enable the ruleset seems to work fine now.
