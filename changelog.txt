@@ -1,3 +1,11 @@
+26.9.19
++ adding explicit all types of resourceTypes, which allows the blocking to be effective! browser often shows message blocked by web-extension. as the blocking is very effective now, I'm considering removing the content-script (still exists in this version).
++ adding readme and screenshots (video guide)
+- reducing the amount of content-script runs to just once before page start.
+- using the same `startup_handler` to handle `onInstalled` which is an event that runs when installed or reloaded, just one more "wakeup" to the service worker I guess..
+- removing (commented-out code still exists) setting badge text and background color, I don't actually use it and it takes a lot of the promise timing as well as not being very effective, staying with icon and title and seems fine and more clean clear and simple). storing some of this (unused) information in the multi-language json files to save space in code.
+* explicit fallback to api for chrome or browser.
+
 26.9.15
 + adding runtime.onStartup to trigger the service worker to wake up very early just to enable the ruleset seems to work fine now.
 

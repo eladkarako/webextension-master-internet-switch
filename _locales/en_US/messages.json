@@ -1,6 +1,10 @@
-{ "name_shrt"              : {"message": "master-internet-switch"                                    }
-, "name_long"              : {"message": "master-internet-switch"                                    }
-, "name_desc"              : {"message": "start browsing with all connections blocked. click icon to toggle allow/block."             }
-, "title_internet_allowed" : {"message": "⭐ ⭐ ⭐ ⭐ ⭐  master-internet-switch - state: ✔  ⭐ ⭐ ⭐ ⭐ ⭐"  }
-, "title_internet_blocked" : {"message": "⭐ ⭐ ⭐ ⭐ ⭐  master-internet-switch - state: ✖  ⭐ ⭐ ⭐ ⭐ ⭐"  }
+{ "name_shrt"                    : {"message": "master-internet-switch"                                     }
+, "name_long"                    : {"message": "master-internet-switch"                                     }
+, "name_desc"                    : {"message": "start browsing with all connections blocked. click icon to toggle allow/block."             }
+, "title_internet_allowed"       : {"message": "⭐ ⭐ ⭐ ⭐ ⭐  master-internet-switch - state: ✔  ⭐ ⭐ ⭐ ⭐ ⭐"   }
+, "title_internet_blocked"       : {"message": "⭐ ⭐ ⭐ ⭐ ⭐  master-internet-switch - state: ✖  ⭐ ⭐ ⭐ ⭐ ⭐"   }
+, "badge_color_internet_allowed" : {"message": "#00FF000A"                                                  }
+, "badge_color_internet_blocked" : {"message": "#FF00000A"                                                  }
+, "badge_text_internet_allowed"  : {"message": "✔"                                                         }
+, "badge_text_internet_blocked"  : {"message": "✖"                                                         }
 }

@@ -14,14 +14,6 @@
                                ,"match_origin_as_fallback" : true
                                ,"run_at"                   : "document_start"
                                ,"world"                    : "ISOLATED"
-                               }
-                              ,{"js"                       : ["content_script.js"]
-                               ,"matches"                  : ["\u003Call_urls\u003E"]
-                               ,"all_frames"               : true
-                               ,"match_about_blank"        : true
-                               ,"match_origin_as_fallback" : true
-                               ,"run_at"                   : "document_end"
-                               ,"world"                    : "ISOLATED"
                                }]
 ,"permissions"               : ["declarativeNetRequest"]
 ,"declarative_net_request"   : {"rule_resources" : [{"id"      : "block_all"

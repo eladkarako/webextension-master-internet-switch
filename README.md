@@ -1,30 +1,96 @@
 <h3><img width="48" src="icons/internet_blocked/48.png" /> master-internet-switch</h3>
 
-browser starts-up with internet blocked,  
-you have to click the web-extension to toggle the state between internet allowed and blocked.  
-by design, you manually refresh your tabs.
+start up your browser with internet blocked,  
+toggle allow/block by clicking the web-extension's icon.  
+
+<img src="screenshot2.png" />  
+
+<video width="800"  preload="metadata" poster="screenshot1.jpg" controls muted loop disableremoteplayback disablepictureinpicture loading="lazy" crossorigin="anonymous">
+  <source type="video/mp4" src="screenshot3.mp4" />
+  Your browser does not support embedded video.
+</video>
 
 <hr/>
 
-useful to reduce CPU and RAM,  
-as well as rendering time,  
-when restoring large previous sessions.
+<details><summary>session restore, use-case:</summary>
 
-kind-of like a firewall.
+works great especially when restoring previous sessions  
+with large amount of tabs and windows.  
 
-blanks-up the document unless fully loaded.
+while Firefox/TOR browsers, are capable, of restoring sessions in a "lazy" mode,  
+where tabs - only loads-up (automatically) once you switch to them,  
+chromium based browsers still haven't implemented it,  
+so normally there is a huge jump in CPU and RAM consumption,  
+and something the whole browser (and/or system) freezes up.  
 
-<hr/>
+..so, this web-extension allows you to always load-up all the tabs and windows,  
+but have the internet disabled by default at first,  
+then you wait until the session is loaded,  
+click the web-extension icon, to enable the internet,  
+and select and manually refresh tab yourself,  
 
-note: chrome shows error 503 on page, that's when a web-extension blocks the internet (expected),  
-a small script will blank up the document after a second.  
+overall - consuming minimal CPU and RAM.  
 
-note: browser start-up sequence first loads up the core functionality,  
-later the web-extensions, so it takes few seconds for the internet to get blocked.  
+</details>
 
-<img src="screenshot1.jpg" />  
 
-note: cached pages do not require internet, they would be blanked after few seconds, unless fully loaded.
+<details><summary>Developer's Notes:</summary>
+
+- I try my best to clear up the document when the internet is disabled,  
+as various elements might be cached and displayed in a messy way. this is the reason  
+for asking host permission with `<all_urls>` and running `content_script.js` in every page.  
+there is also a small delay while `content_script.js` verifies the state of the internet (blocked/allowed),  
+by sending a message to the service worker (`sw.js`).  
+this designed to reduce the overall RAM consumption of the tab, and normalize the visibility to blank page,  
+while preserving the actual URL and origin of the page.  
+some other web-extensions might consider to redirect to a blank page,  
+I actually run a little code to verify document is cleared very early in page's life-cycle (`document_start`).  
+the code won't run if you clicked while the page's already started to load, which is by design.  
+if the page has already loaded, it would be displayed.
+
+- even though the web-extension handles "the internet",  
+it actually does not handle connection, but built around `declarativeNetRequest`,  
+and a static ruleset to block all types of connections, started `enabled:true` by default.  
+works globally, and does not need the web-extension to actually work as it is handled by the browser.  
+so no information actually pass-through the web-extensions.  
+
+- some websites will be successfully blanked, other will display error 503 for a few seconds then blanked,  
+other (mostly, when they have some kind of an offline component or manifest) would display  
+"this website got blocked by a web-extension". all are the same.  
+
+- the ruleset includes explicitly `"urlFilter" : "*"` to match every page,  
+but with only that, some cached component were implicitly still loaded up,  
+which wasn't all bad since it didn't actually a result of a network connection, just cache.  
+but by adding resource type explicitly (in here it is sorted by a-b-c order):  
+
+```json
+"resourceTypes" : [
+ "csp_report"
+,"font"
+,"image"
+,"main_frame"
+,"media"
+,"object"
+,"other"
+,"ping"
+,"script"
+,"stylesheet"
+,"sub_frame"
+,"webbundle"
+,"websocket"
+,"webtransport"
+,"xmlhttprequest"
+]
+```
+
+it seems to perfectly block, explicitly, most of cached resources too.  
+this is better in more ways than one since there are background-connections,  
+that are technically triggered by a page, but continue as background connection,  
+for example "ping", and probably websocket.  
+having the internet blocked (which is a global state, not a "per tab" state),  
+taking care of blocking those as well. it kind-of feels more like a firewall now..
+
+</details>
 
 <hr/>
 
@@ -38,3 +104,4 @@ note: cached pages do not require internet, they would be blanked after few seco
 
 <hr/>
 <br/> 
+

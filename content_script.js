@@ -1,5 +1,5 @@
 (async ()=>{"use strict";
-  const api = chrome || browser || {runtime:{lastError:true}};
+  const api = ("undefined" !== typeof chrome ? chrome : ("undefined" !== typeof browser ? browser : {runtime:{lastError:true}}));
 
   const clean = ()=>{
     try{ self.stop();                       }catch(err){}

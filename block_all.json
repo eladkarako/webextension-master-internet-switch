@@ -1,6 +1,23 @@
 [{
- "id"        : 1
-,"priority"  : 1
-,"action"    : { "type"      : "block" }
-,"condition" : { "urlFilter" : "*"     }
+ "id"            : 1
+,"priority"      : 1
+,"action"        : {"type"          : "block" }
+,"condition"     : {"urlFilter"     : "*"     
+                   ,"resourceTypes" : ["csp_report"
+                                      ,"font"
+                                      ,"image"
+                                      ,"main_frame"
+                                      ,"media"
+                                      ,"object"
+                                      ,"other"
+                                      ,"ping"
+                                      ,"script"
+                                      ,"stylesheet"
+                                      ,"sub_frame"
+                                      ,"webbundle"
+                                      ,"websocket"
+                                      ,"webtransport"
+                                      ,"xmlhttprequest"
+                                      ]
+                   }
 }]

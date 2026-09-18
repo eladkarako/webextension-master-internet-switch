@@ -1,21 +1,23 @@
 "use strict";
-const api                = chrome || browser || {runtime:{lastError:true}}
+const api                = ("undefined" !== typeof chrome ? chrome : ("undefined" !== typeof browser ? browser : {runtime:{lastError:true}}))
      ,manifest           = api.runtime.getManifest()
      ,RULESET_ID         = manifest.declarative_net_request.rule_resources[0].id  //"block_all"
      ,description_states = {
         internet_blocked : {
-          color : [255, 0, 0, 255] //red
-         ,title : api.i18n.getMessage("title_internet_blocked") //✖
-         ,icon  : manifest.action.default_icon
+          icon        : manifest.action.default_icon
+         ,title       : api.i18n.getMessage("title_internet_blocked")
+       //,badge_color : api.i18n.getMessage("badge_color_internet_blocked") //red
+       //,badge_text  : api.i18n.getMessage("badge_text_internet_blocked")  //✖
         }
        ,internet_allowed : {
-          color : [255, 0, 0, 255] //green
-         ,title : api.i18n.getMessage("title_internet_allowed") //✔
-         ,icon  :  {"16"  : "icons/internet_allowed/16.png"
-                   ,"32"  : "icons/internet_allowed/32.png"
-                   ,"48"  : "icons/internet_allowed/48.png"
-                   ,"128" : "icons/internet_allowed/128.png"
-                   }
+          icon        :  {"16"  : "icons/internet_allowed/16.png"
+                         ,"32"  : "icons/internet_allowed/32.png"
+                         ,"48"  : "icons/internet_allowed/48.png"
+                         ,"128" : "icons/internet_allowed/128.png"
+                         }
+         ,title       : api.i18n.getMessage("title_internet_allowed")
+       //,badge_color : api.i18n.getMessage("badge_color_internet_allowed") //green
+       //,badge_text  : api.i18n.getMessage("badge_text_internet_allowed")  //✔
         }
      }
     ;
@@ -42,9 +44,10 @@ const set_internet = async (is_to_internet_allowed)=>{
 
   return Promise.all([
     api.declarativeNetRequest.updateEnabledRulesets(options)
-   ,api.action.setBadgeBackgroundColor({ color : description_states[is_to_internet_allowed ? "internet_allowed" : "internet_blocked"].color })
-   ,api.action.setTitle({                title : description_states[is_to_internet_allowed ? "internet_allowed" : "internet_blocked"].title })
-   ,api.action.setIcon({                 path  : description_states[is_to_internet_allowed ? "internet_allowed" : "internet_blocked"].icon  })
+   ,api.action.setIcon({                 path  : description_states[is_to_internet_allowed ? "internet_allowed" : "internet_blocked"].icon        })
+   ,api.action.setTitle({                title : description_states[is_to_internet_allowed ? "internet_allowed" : "internet_blocked"].title       })
+ //,api.action.setBadgeBackgroundColor({ color : description_states[is_to_internet_allowed ? "internet_allowed" : "internet_blocked"].badge_color })
+ //,api.action.setBadgeText({            text  : description_states[is_to_internet_allowed ? "internet_allowed" : "internet_blocked"].badge_text  })
   ]);
 };
 
@@ -66,6 +69,7 @@ const startup_handler = async ()=>{
 };
 
 api.runtime.onStartup.addListener(startup_handler);
+api.runtime.onInstalled.addListener(startup_handler);
 
 
 const click_handler = async ()=>{
@@ -93,6 +97,8 @@ const message_handler = async (message, sender, send_response)=>{
 
   const is_internet_allowed = await get_is_internet_allowed();
   send_response(is_internet_allowed);
+
+  return true;
 };
 
 api.runtime.onMessage.addListener(message_handler);
