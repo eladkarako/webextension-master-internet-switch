@@ -6,9 +6,9 @@ toggle allow/block by clicking the web-extension's icon.
 <img src="screenshot2.png" />  
 
 
-[Watch the demo](./screenshot3.mp4)
+[Watch the demo](https://github.com/eladkarako/webextension-master-internet-switch/raw/refs/heads/master/screenshot3.mp4)
 
-
+https://github.com/eladkarako/webextension-master-internet-switch/raw/refs/heads/master/screenshot3.mp4
 
 <hr/>
 
