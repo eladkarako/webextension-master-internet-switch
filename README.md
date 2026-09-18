@@ -6,7 +6,8 @@ toggle allow/block by clicking the web-extension's icon.
 <img src="screenshot2.png" />  
 
 
-screenshot3.mp4
+[Watch the demo](./screenshot3.mp4)
+
 
 
 <hr/>
