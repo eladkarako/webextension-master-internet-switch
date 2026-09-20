@@ -1,3 +1,6 @@
+26.9.20
+- removed content-script and <all_url> host permission, now it's purely no client-side javascript injection (even not isolated) which makes the web-extension safe, the existing ruleset is static and the service worker simply maintain the button states. the reason is that after testing, the chrome:// and edge:// pages that shows X was blocked by web-extension seems to not allow (unless you enable in the flags chrome pages as script's target with you should not do) any script injection. 
+
 26.9.19
 + adding explicit all types of resourceTypes, which allows the blocking to be effective! browser often shows message blocked by web-extension. as the blocking is very effective now, I'm considering removing the content-script (still exists in this version).
 + adding readme and screenshots (video guide)
