@@ -36,6 +36,27 @@ and all is handled by the browser, and the ruleset global state enabled/disabled
 
 <hr/>
 
+firefox and chrome have slight difference which needs to keep two sets of ruleset and manifest json files. those need to be copied and renamed. there is no code modification.
+
+build - automate.  
+from the repository you need to run `zip.cmd` which assumes `7z.exe` exists in the system's `PATH`.  
+it will create a `chrome.zip` and `firefox.zip` as well as keep their pre-zip folders `./firefox/` and `./chrome/` .  
+
+build - manual.  
+1. create folders `chrome` and `firefox` .
+2. copy `block_all.chrome.json` to `chrome` and rename it `block_all.json` .
+3. copy `block_all.firefox.json` to `firefox` and rename it `block_all.json` .
+4. copy `manifest.chrome.json` to `chrome` and rename it `manifest.json` .
+5. copy `manifest.firefox.json` to `firefox` and rename it `manifest.json` .
+6. copy `_locales`, `icons`, and `sw.js` to both `chrome` and `firefox` as is.
+7. optionally copy `LICENSE`, `version.txt`, `changelog.txt` to `chrome` and `firefox`.
+
+to distribute the zip, zip up the content of each folder so in the root will be `manifest.json` (and not `/chrome/manifest.json`).
+
+copy 
+
+<hr/>
+
 - zero configuration.
 - requests are not modified in any way.
 - no data collection. not even analytics.
