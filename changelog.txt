@@ -1,3 +1,8 @@
+26.9.21
+- block_all.json -> block_all.chrome.json and block_all.firefox.json (zip.cmd copies and rename them in each chrome and firefox folders).
++ block_all.chrome.json - identical to block_all.json does not supports "new" resourceTypes added to block_all.firefox.json .
++ block_all.firefox.json - removed webbundle,webtransport (not supported). added beacon, imageset, json, object_subrequest, speculative, web_manifest, xml_dtd, xslt acording to https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest/ResourceType (tested on firefox 153.2.0esr). https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest#type-ResourceType (tested on edge 152.0.4191.66).
+
 26.9.20
 - removed content-script and <all_url> host permission, now it's purely no client-side javascript injection (even not isolated) which makes the web-extension safe, the existing ruleset is static and the service worker simply maintain the button states. the reason is that after testing, the chrome:// and edge:// pages that shows X was blocked by web-extension seems to not allow (unless you enable in the flags chrome pages as script's target with you should not do) any script injection. 
 

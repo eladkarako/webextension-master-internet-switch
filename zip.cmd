@@ -15,7 +15,7 @@ goto MAIN
   copy /y "..\icons\internet_allowed\*"      ".\icons\internet_allowed\"
 
   copy /y "..\manifest.%NAME%.json"          ".\manifest.json"
-  copy /y "..\block_all.json"                "."
+  copy /y "..\block_all.%NAME%.json"         ".\block_all.json"
 
   copy /y "..\*.js"                          "."
 

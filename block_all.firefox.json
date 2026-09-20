@@ -1,0 +1,28 @@
+[{
+ "id"            : 1
+,"priority"      : 1
+,"action"        : {"type"          : "block" }
+,"condition"     : {"urlFilter"     : "*"     
+                   ,"resourceTypes" : ["beacon"
+                                      ,"csp_report"
+                                      ,"font"
+                                      ,"image"
+                                      ,"imageset"
+                                      ,"json"
+                                      ,"main_frame"
+                                      ,"media"
+                                      ,"object_subrequest"
+                                      ,"object"
+                                      ,"other"
+                                      ,"ping"
+                                      ,"script"
+                                      ,"stylesheet"
+                                      ,"sub_frame"
+                                      ,"web_manifest"
+                                      ,"websocket"
+                                      ,"xml_dtd"
+                                      ,"xmlhttprequest"
+                                      ,"xslt"
+                                      ]
+                   }
+}]
