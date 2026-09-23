@@ -1,74 +1,85 @@
 <h3><img width="48" src="icons/internet_blocked/48.png" /> master-internet-switch</h3>
 
-a tiny web-extension that tries to act as a firewall,  
-by default internet is blocked when the browser starts-up.  
-you have to click the web-extension button on the toolbar, to enable it.  
+A tiny browser extension that acts like a firewall.
+
+By default, internet access is blocked when the browser starts. To enable internet access, click the extension button in the toolbar.
 
 <img src="screenshot1.png" />
 
-it won't tabs load, nor to background request to execute until you are ready.  
-this includes when the browser restores from a crash or restoring previous session,  
-or undo a window with tabs.  
-all the tabs would be opened ..URL and all,  
-but won't load until you click to allow it, and manually refresh the tab(s).  
+Tabs will not load, and background requests will not be allowed to execute until you enable internet access.
 
-it may also saves up some 100% CPU and RAM when starting up the browser with a lot of tabs.
+This also applies when the browser restores tabs after a crash, restores a previous session, or reopens a closed window. All tabs will be restored with their URLs, but they will not load until you click the extension button to allow internet access and manually refresh the tab or tabs.
 
-<hr/>
+This may also significantly reduce CPU and RAM usage when starting the browser with many tabs open.
 
-built around `declarativeNetRequest` a private respecting,  
-non-invasive, unaware, no bottleneck, static ruleset. that is toggled enabled/disabled  
-(when the ruleset is enabled the internet is disabled).
+<hr />
 
-recent Firefox would support blocking up those resource types: `beacon, csp_report, font, image, imageset, json, main_frame, media, object_subrequest, object, other, ping, script, stylesheet, sub_frame, web_manifest, websocket, xml_dtd, xmlhttprequest, xslt`,  
-while edge and chromium based browsers would support those resource types: `csp_report, font, image, main_frame, media, object, other, ping, script, stylesheet, sub_frame, webbundle, websocket, webtransport, xmlhttprequest`.  
+The extension is built around <code>declarativeNetRequest</code>: a privacy-respecting, non-invasive, stateless ruleset with minimal overhead. The ruleset can be enabled or disabled. When it is enabled, internet access is blocked.
 
-note that the web-extension "raise up" as soon as possible, still, requests initiated by the browser itself especially at very early startup, would probably slip through. if you want privacy, set a proxy (even local one), without starting it then launce the browser, after that launch the proxy, or use something like tor.
+Recent versions of Firefox support blocking the following resource types:
 
-note:  
-this web-extension used to also run a client-side javascript, with host permission `<all_urls>`,  
-it stopped the document loading, and cleared up any existing (cached) DOM items. I've removed it,  
-once I've noticed it isn't really needed in chromium based browsers, as the browser itself shows  
-"this website was blocked by a web-extension" (custom error page), which technically is a "chrome page"  
-(similar to `chrome://` or `edge://` pages) in which the javascript wouldn't be able to run anyway.  
-now this web-extension is super fast, without any host permissions (not even `activeTab`!),  
-and all is handled by the browser, and the ruleset global state enabled/disabled.
+<code>beacon, csp_report, font, image, imageset, json, main_frame, media, object_subrequest, object, other, ping, script, stylesheet, sub_frame, web_manifest, websocket, xml_dtd, xmlhttprequest, xslt</code>
 
-<hr/>
+Edge and Chromium-based browsers support the following resource types:
 
-firefox and chrome have slight difference which needs to keep two sets of ruleset and manifest json files. those need to be copied and renamed. there is no code modification.
+<code>csp_report, font, image, main_frame, media, object, other, ping, script, stylesheet, sub_frame, webbundle, websocket, webtransport, xmlhttprequest</code>
 
-build - automate.  
-from the repository you need to run `zip.cmd` which assumes `7z.exe` exists in the system's `PATH`.  
-it will create a `chrome.zip` and `firefox.zip` as well as keep their pre-zip folders `./firefox/` and `./chrome/` .  
+Please note that the extension starts as early as possible, but requests initiated by the browser itself—especially during the earliest stages of startup—may still slip through. If you require stronger privacy protection, configure a proxy, even a local one. Start the browser while the proxy is stopped, then start the proxy afterward. Alternatively, use a solution such as Tor.
 
-build - manual.  
-1. create folders `chrome` and `firefox` .
-2. copy `block_all.chrome.json` to `chrome` and rename it `block_all.json` .
-3. copy `block_all.firefox.json` to `firefox` and rename it `block_all.json` .
-4. copy `manifest.chrome.json` to `chrome` and rename it `manifest.json` .
-5. copy `manifest.firefox.json` to `firefox` and rename it `manifest.json` .
-6. copy `_locales`, `icons`, and `sw.js` to both `chrome` and `firefox` as is.
-7. optionally copy `LICENSE`, `version.txt`, `changelog.txt` to `chrome` and `firefox`.
+<strong>Note:</strong>
 
-to distribute the zip, zip up the content of each folder so in the root will be `manifest.json` (and not `/chrome/manifest.json`).
+This extension previously used client-side JavaScript with the <code>&lt;all_urls&gt;</code> host permission. That script stopped document loading and cleared any existing cached DOM content.
 
-copy 
+It was removed after I discovered that it was not necessary in Chromium-based browsers. The browser itself displays the message “This website was blocked by a browser extension” on a custom error page. Technically, this is a browser page—similar to <code>chrome://</code> or <code>edge://</code> pages—where extension JavaScript cannot run anyway.
 
-<hr/>
+The extension is now extremely fast and requires no host permissions—not even <code>activeTab</code>. Everything is handled by the browser through the global enabled/disabled state of the ruleset.
 
-- zero configuration.
-- requests are not modified in any way.
-- no data collection. not even analytics.
-- no ads.
-- open source. MIT.
+<hr />
 
+Firefox and Chromium-based browsers have slight differences that require separate ruleset and manifest JSON files. These files must be copied and renamed during the build process. No code modifications are required.
 
-feel free to open a bug, or ask a question.  
+<strong>Automated build</strong>
 
+From the repository directory, run <code>zip.cmd</code>. The script assumes that <code>7z.exe</code> is available in the system <code>PATH</code>.
 
-<a href="https://paypal.me/31adkarak0" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Sponsor-Donate-blue?logo=paypal&style=flat" alt="PayPal Donation"><br/><img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal Donation"></a>
+It will create:
 
-<hr/>
-<br/> 
+<ul>
+  <li><code>chrome.zip</code></li>
+  <li><code>firefox.zip</code></li>
+  <li>The uncompressed build directories <code>./chrome/</code> and <code>./firefox/</code></li>
+</ul>
 
+<strong>Manual build</strong>
+
+<ol>
+  <li>Create the <code>chrome</code> and <code>firefox</code> directories.</li>
+  <li>Copy <code>block_all.chrome.json</code> to <code>chrome/</code> and rename it to <code>block_all.json</code>.</li>
+  <li>Copy <code>block_all.firefox.json</code> to <code>firefox/</code> and rename it to <code>block_all.json</code>.</li>
+  <li>Copy <code>manifest.chrome.json</code> to <code>chrome/</code> and rename it to <code>manifest.json</code>.</li>
+  <li>Copy <code>manifest.firefox.json</code> to <code>firefox/</code> and rename it to <code>manifest.json</code>.</li>
+  <li>Copy <code>_locales</code>, <code>icons</code>, and <code>sw.js</code> to both directories without modification.</li>
+  <li>Optionally copy <code>LICENSE</code>, <code>version.txt</code>, and <code>changelog.txt</code> to both directories.</li>
+  <li>For distribution, create a ZIP archive containing the contents of each directory. The archive root must contain <code>manifest.json</code>; it must not contain a top-level <code>chrome/</code> or <code>firefox/</code> directory.</li>
+</ol>
+
+<hr />
+
+<ul>
+  <li>Zero configuration.</li>
+  <li>Requests are not modified in any way.</li>
+  <li>No data collection—not even analytics.</li>
+  <li>No advertisements.</li>
+  <li>Open source and licensed under the MIT License.</li>
+</ul>
+
+Feel free to open an issue or ask a question.
+
+<a href="https://paypal.me/31adkarak0" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Sponsor-Donate-blue?logo=paypal&style=flat" alt="Donate via PayPal">
+  <br />
+  <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal Donation">
+</a>
+
+<hr />
+<br />
